@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_title" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/gray"
+        android:layout_weight="1">
+
+        <com.teang.view.custom.VerifyCodeView
+            android:id="@+id/verify_code_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <com.teang.view.custom.VerificationSeekBar
+            android:id="@+id/sb_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="10dp"
+            android:max="100"
+            android:maxHeight="45dp"
+            android:minHeight="45dp"
+            android:padding="1dp"
+            android:progress="0"
+            android:progressDrawable="@drawable/bg_forgotpassword_seekbar"
+            android:thumb="@drawable/bg_seekbar_thumb"
+            android:thumbOffset="-1dp" />
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,85 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.1"
+
+    defaultConfig {
+        applicationId "com.teang"
+        minSdkVersion 23
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        ndk {
+            //设置支持的SO库架构（开发者可以根据需要，选择一个或多个平台的so）
+            //abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86", "arm64-v8a", "x86_64"
+            abiFilters "armeabi-v7a"
+        }
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : "com.teang",
+                JPUSH_APPKEY : "47373085a7325875ffcb33fc",
+                JPUSH_CHANNEL : "developer-default"
+        ]
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            buildConfigField("boolean", "LOG", "false")
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            buildConfigField("boolean", "LOG", "true")
+        }
+    }
+
+    compileOptions{
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    sourceSets{
+        main{
+            jniLibs.srcDirs=['libs']
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    //material
+    implementation 'com.google.android.material:material:1.1.0'
+    //butterknife
+    implementation 'com.jakewharton:butterknife:10.2.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
+    //下拉刷新
+    implementation  'com.scwang.smart:refresh-layout-kernel:2.0.1'
+    implementation  'com.scwang.smart:refresh-header-classics:2.0.1'    //经典刷新头
+    implementation  'com.scwang.smart:refresh-header-material:2.0.1'    //谷歌刷新头
+    implementation  'com.scwang.smart:refresh-footer-ball:2.0.1'
+    //autosize
+    implementation 'me.jessyan:autosize:1.2.1'
+    //权限请求
+    implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
+    //retrofit2
+    implementation 'com.squareup.retrofit2:retrofit:2.7.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.7.2'
+    //retrofit添加Rxjava支持
+    implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+    //rxjava框架
+    implementation 'com.trello.rxlifecycle2:rxlifecycle-components:2.1.0'
+    //高德
+    implementation 'com.amap.api:search:7.3.0'//搜索
+    implementation 'com.amap.api:location:5.1.0'//定位
+    implementation 'com.amap.api:navi-3dmap:7.5.0_3dmap7.5.0'//导航
+    //EventBus
+    implementation 'org.simple:androideventbus:1.0.5.1'
+    //glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    //极光推送
+    implementation 'cn.jiguang.sdk:jpush:3.7.0'
+    implementation 'cn.jiguang.sdk:jcore:2.4.0'
+    //scrolllayout
+    implementation 'com.yinglan.scrolllayout:scrolllayout:1.0.2'
+}
