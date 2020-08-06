@@ -57,6 +57,7 @@ public class RetrofitUtils {
                 .readTimeout(Constans.DEFAULT_TIME, TimeUnit.SECONDS)//设置读取超时时间
                 .connectTimeout(Constans.DEFAULT_TIME, TimeUnit.SECONDS)//设置请求超时时间
                 .writeTimeout(Constans.DEFAULT_TIME,TimeUnit.SECONDS)//设置写入超时时间
+                .addInterceptor(new TokenInterceptor())//添加请求头拦截器
                 .addInterceptor(new LogInterceptor())//添加打印拦截器
                 .retryOnConnectionFailure(true)//设置出现错误进行重新连接。
                 .build();
