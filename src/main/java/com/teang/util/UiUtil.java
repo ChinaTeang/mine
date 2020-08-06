@@ -1,6 +1,9 @@
 package com.teang.util;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.view.Window;
 import android.view.WindowManager;
@@ -95,5 +98,30 @@ public class UiUtil {
         context.requestWindowFeature(Window.FEATURE_NO_TITLE);
         context.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    }
+
+
+    /**
+     * 跳转MIUI12 app权限管理页面
+     * 不同型号（小米、华为……） 不同手机版本（MIUI8、MIUI12……） 对应不同Activity
+     */
+    public static void jumpMINIPermission(BaseActivity context) {
+        Intent intent = new Intent();
+        intent.setAction("miui.intent.action.APP_PERM_EDITOR");
+        intent.setClassName("com.miui.securitycenter", "com.miui.permcenter.permissions.PermissionsEditorActivity");
+        intent.putExtra("extra_pkgname", context.getPackageName());
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 跳转app应用设置页面
+     */
+    public static void jumpAppSetting(BaseActivity context) {
+        Intent intent = new Intent();
+        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", context.getPackageName(), null);
+        intent.setData(uri);
+        context.startActivity(intent);
     }
 }

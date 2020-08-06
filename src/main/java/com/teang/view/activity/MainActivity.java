@@ -111,10 +111,11 @@ public class MainActivity extends BaseActivity {
         switch (position) {
             case 0://地图
                 startActivity(MapActivity.class);
+                //UiUtil.jumpMINIPermission(context);
                 break;
             case 1://网络请求
                 //getNetData();
-                ToastUtil.showToast(context, "网络请求");
+                UiUtil.jumpAppSetting(context);
                 break;
             case 2://相机
                 startActivity(CameraActivity.class);
