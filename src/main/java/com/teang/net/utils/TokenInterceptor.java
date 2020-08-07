@@ -12,7 +12,7 @@ public class TokenInterceptor implements Interceptor {
     public okhttp3.Response intercept(Chain chain) throws IOException {
         Request originalRequest = chain.request();
         Request authorised = originalRequest.newBuilder()
-                .addHeader("Authorization", "token")
+                .header("token", "token")
                 .build();
         return chain.proceed(authorised);
     }
